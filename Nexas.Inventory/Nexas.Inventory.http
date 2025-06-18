@@ -1,0 +1,6 @@
+@Nexas.Inventory_HostAddress = http://localhost:5285
+
+GET {{Nexas.Inventory_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
