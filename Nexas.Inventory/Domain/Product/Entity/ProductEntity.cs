@@ -32,5 +32,6 @@ namespace Nexas.Inventory.Domain.Product.Entity
         }
         public void ActivateDesactivate() => Active = !Active;
 
+
     }
 }
