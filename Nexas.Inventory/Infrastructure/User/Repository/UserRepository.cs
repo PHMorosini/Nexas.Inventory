@@ -14,6 +14,11 @@ namespace Nexas.Inventory.Infrastructure.User.Repository
         {
             return await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<bool> ValidateUserPassword(UserEntity user)
+        {
+            return user.VerifyPassword(user.PasswordHash);
+        }
     }
 
 }
