@@ -5,6 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Nexas.Inventory.Application.Base.Interface;
 using Nexas.Inventory.Application.Base.Service;
 using Nexas.Inventory.Application.Mappings;
+using Nexas.Inventory.Application.Product.Interface;
+using Nexas.Inventory.Application.Product.Services;
+using Nexas.Inventory.Application.StockItem.Interface;
+using Nexas.Inventory.Application.StockItem.Service;
+using Nexas.Inventory.Application.Store.Interface;
+using Nexas.Inventory.Application.Store.Service;
+using Nexas.Inventory.Application.User.Interface;
 using Nexas.Inventory.Domain.Product.Interface;
 using Nexas.Inventory.Domain.User.Entity;
 using Nexas.Inventory.Infrastructure.Base.Interfaces;
@@ -16,6 +23,7 @@ using Nexas.Inventory.Infrastructure.Store.Interface;
 using Nexas.Inventory.Infrastructure.Store.Repository;
 using Nexas.Inventory.Infrastructure.User.Interface;
 using Nexas.Inventory.Infrastructure.User.Repository;
+using Nexas.Inventory.Infrastructure.User.Service;
 
 namespace Nexas.Inventory
 {
@@ -39,8 +47,13 @@ namespace Nexas.Inventory
             builder.Services.AddScoped<IStockItemRepository, StockItemRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+
             //REGISTER FOR SERVICES
-            builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IStockItemService, StockItemService>();
+            builder.Services.AddScoped<IStoreService, StoreService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
 
             //REGISTER FOR AUTOMAPPER
             builder.Services.AddAutoMapper(cfg =>
