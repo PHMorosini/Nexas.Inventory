@@ -1,8 +1,10 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Nexas.Inventory.Application.Base.Interface;
 using Nexas.Inventory.Application.Base.Service;
+using Nexas.Inventory.Application.Mappings;
 using Nexas.Inventory.Domain.Product.Interface;
 using Nexas.Inventory.Domain.User.Entity;
 using Nexas.Inventory.Infrastructure.Base.Interfaces;
@@ -39,6 +41,13 @@ namespace Nexas.Inventory
 
             //REGISTER FOR SERVICES
             builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+
+            //REGISTER FOR AUTOMAPPER
+            builder.Services.AddAutoMapper(cfg =>
+            {
+            }, typeof(MappingProfile).Assembly);
+
+
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
