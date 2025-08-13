@@ -21,10 +21,13 @@ public class UserService : BaseService<UserEntity, UserViewModel>, IUserService
         return _mapper.Map<UserViewModel>(userDb);
     }
 
-    public async Task<bool> ValidateUserPassword(UserViewModel user)
+    public async Task<bool> ValidateUserPassword(string email, string plainPassword)
     {
-        var userDb = _mapper.Map<UserEntity>(user);
-        return await _userRepository.ValidateUserPassword(userDb);
+        var userEntity = await _userRepository.GetByEmailAsync(email);
+        if (userEntity == null)
+            return false;
+
+        return userEntity.VerifyPassword(plainPassword);
     }
 }
 

@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nexas.Inventory.Domain.User.Entity;
+using Nexas.Inventory.Infrastructure.Context;
 using Nexas.Inventory.Infrastructure.User.Interface;
 
 namespace Nexas.Inventory.Infrastructure.User.Repository
 {
     public class UserRepository : BaseRepository<UserEntity>, IUserRepository
     {
-        public UserRepository(DbContext context) : base(context)
+        public UserRepository(AppDbContext context) : base(context)
         {
         }
 

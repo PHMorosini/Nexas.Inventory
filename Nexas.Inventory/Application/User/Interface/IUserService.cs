@@ -8,6 +8,6 @@ namespace Nexas.Inventory.Application.User.Interface;
 public interface IUserService : IBaseService<UserEntity,UserViewModel>
 {
     Task<UserViewModel> GetByEmailAsync(string email);
-    Task<bool> ValidateUserPassword(UserViewModel user);
+    Task<bool> ValidateUserPassword(string email, string plainPassword);
 }
 

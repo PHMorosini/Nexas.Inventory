@@ -6,9 +6,9 @@ namespace Nexas.Inventory.Domain.User.Entity;
 
 public class UserEntity
 {
+    [Key]
     public int Id { get; set; }
     public string Name { get; set; }
-    [Key]
     public string Email { get; private set; }
     public string PasswordHash { get; private set; }
 
@@ -27,15 +27,26 @@ public class UserEntity
     {
         return BCrypt.Net.BCrypt.Verify(password, PasswordHash);
     }
+    public void ChangePassword(string newPassword)
+    {
+        SetPassword(newPassword);
+    }
 
     public UserEntity() { }
 
     public UserEntity(int id, string name, string email, string password)
     {
         Id = id;
-        Name = name;
+        Name = name.ToUpper();
         SetEmail(email);
         SetPassword(password);
+    }
+
+    public void Edit(UserEntity user)
+    {
+        Id = user.Id;
+        Name = user.Name.ToUpper();
+        SetEmail(user.Email);
     }
 }
 

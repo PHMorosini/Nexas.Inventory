@@ -8,7 +8,7 @@
         Task<IEnumerable<TViewModel>> GetAllAsync();
         Task AddAsync(TViewModel vm);
         Task UpdateAsync(TViewModel vm);
-        Task DeleteAsync(TEntity entity);
+        Task DeleteAsync(TViewModel vm);
     }
 
 }
