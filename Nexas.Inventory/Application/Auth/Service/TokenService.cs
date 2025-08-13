@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Nexas.Inventory.Application.Auth.Interface;
+using Nexas.Inventory.Application.User.ViewModel;
 using Nexas.Inventory.Domain.User.Entity;
 using Nexas.Inventory.Infrastructure.JwtSettings;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,7 +18,7 @@ public class TokenService : ITokenService
         _jwtSettings = jwtSettings.Value;
     }
 
-    public Task<string> GenerateToken(UserEntity user)
+    public Task<string> GenerateToken(UserViewModel user)
     {
         var claims = new[]
         {

@@ -2,6 +2,7 @@
 using Nexas.Inventory.Domain.Product.Interface;
 using Nexas.Inventory.Domain.StockItem.Entity;
 using Nexas.Inventory.Domain.Store.Entity;
+using Nexas.Inventory.Infrastructure.Context;
 using Nexas.Inventory.Infrastructure.StockItem.Interface;
 using Nexas.Inventory.Infrastructure.Store.Interface;
 
@@ -11,7 +12,7 @@ public class StockItemRepository : BaseRepository<StockItemEntity>, IStockItemRe
 {
     private readonly IProductRepository _productRepository;
 
-    public StockItemRepository(DbContext context,
+    public StockItemRepository(AppDbContext context,
         IProductRepository productRepository)
         : base(context)
     {
