@@ -207,8 +207,7 @@ public class UserController : ControllerBase
     /// <response code="400">Invalid user ID provided.</response>
     /// <response code="401">Unauthorized - Invalid or missing token.</response>
     /// <response code="404">User not found.</response>
-    [Authorize]
-    [HttpDelete("delete{id:int}")]
+    [HttpDelete("delete/{id:int}")]
     [ProducesResponseType(typeof(Result<UserViewModel>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<AuthResponseViewModel>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Result<UserViewModel>), StatusCodes.Status404NotFound)]
@@ -222,7 +221,7 @@ public class UserController : ControllerBase
         if (model == null)
             return NotFound(Result<UserViewModel>.NotFound("User not found"));
 
-        await _userService.DeleteAsync(model);
+        await _userService.DeleteAsync(id);
         return Ok(Result<UserViewModel>.Ok(model, "Success Return"));
     }
 }

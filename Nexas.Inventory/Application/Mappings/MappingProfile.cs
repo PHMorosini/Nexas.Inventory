@@ -23,6 +23,7 @@ namespace Nexas.Inventory.Application.Mappings
             //USER MAPPER
             CreateMap<UserViewModel, UserEntity>();
             CreateMap<UserEntity, UserViewModel>();
+
         }
     }
 }
