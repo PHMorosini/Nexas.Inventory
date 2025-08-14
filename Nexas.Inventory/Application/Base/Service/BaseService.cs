@@ -42,11 +42,14 @@ namespace Nexas.Inventory.Application.Base.Service
             await _repository.SaveChangesAsync();
         }
 
-        public virtual async Task DeleteAsync(TViewModel vm)
+        public virtual async Task DeleteAsync(object id)
         {
-            var entity = _mapper.Map<TEntity>(vm);
-            _repository.Delete(entity);
-            await _repository.SaveChangesAsync();
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity != null)
+            {
+                _repository.Delete(entity);
+                await _repository.SaveChangesAsync();
+            }
         }
     }
 
